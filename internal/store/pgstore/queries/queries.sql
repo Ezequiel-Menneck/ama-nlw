@@ -49,7 +49,7 @@ WHERE
     "id" = $1
 RETURNING reaction_count;
 
--- name: MArkMessageAsAnswered :exec
+-- name: MarkMessageAsAnswered :exec
 UPDATE messages
 SET
     answered = true

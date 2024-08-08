@@ -137,7 +137,7 @@ func (q *Queries) InsertRoom(ctx context.Context, theme string) (uuid.UUID, erro
 	return id, err
 }
 
-const mArkMessageAsAnswered = `-- name: MArkMessageAsAnswered :exec
+const markMessageAsAnswered = `-- name: MarkMessageAsAnswered :exec
 UPDATE messages
 SET
     answered = true
@@ -145,8 +145,8 @@ WHERE
     "id" = $1
 `
 
-func (q *Queries) MArkMessageAsAnswered(ctx context.Context, id uuid.UUID) error {
-	_, err := q.db.Exec(ctx, mArkMessageAsAnswered, id)
+func (q *Queries) MarkMessageAsAnswered(ctx context.Context, id uuid.UUID) error {
+	_, err := q.db.Exec(ctx, markMessageAsAnswered, id)
 	return err
 }
 
