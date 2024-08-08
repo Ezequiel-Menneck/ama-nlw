@@ -126,12 +126,12 @@ func (q *Queries) InsertMessage(ctx context.Context, arg InsertMessageParams) (u
 const insertRoom = `-- name: InsertRoom :one
 INSERT INTO rooms
     ("theme") VALUES
-    ("$1")
+    ($1)
 RETURNING "id"
 `
 
-func (q *Queries) InsertRoom(ctx context.Context) (uuid.UUID, error) {
-	row := q.db.QueryRow(ctx, insertRoom)
+func (q *Queries) InsertRoom(ctx context.Context, theme string) (uuid.UUID, error) {
+	row := q.db.QueryRow(ctx, insertRoom, theme)
 	var id uuid.UUID
 	err := row.Scan(&id)
 	return id, err

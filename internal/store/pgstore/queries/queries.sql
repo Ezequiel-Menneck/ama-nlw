@@ -12,7 +12,7 @@ FROM rooms;
 -- name: InsertRoom :one
 INSERT INTO rooms
     ("theme") VALUES
-    ("$1")
+    ($1)
 RETURNING "id";
 
 -- name: GetMessage :one
